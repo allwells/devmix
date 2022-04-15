@@ -17,7 +17,7 @@ class RegisterController extends Controller {
         return view('auth.register');
     }
 
-    public function create(Request $request) {
+    public function store(Request $request) {
 
         // validation
         $this->validate($request,[
