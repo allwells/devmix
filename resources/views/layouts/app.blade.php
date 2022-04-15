@@ -26,12 +26,13 @@
             </button>
             <div class="collapse navbar-collapse flex justify-content-end w-auto" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ route('posts') }}" tabindex="-1"
+                            aria-disabled="true">Post</a>
+                    </li>
                     @auth
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="{{ route('dashboard') }}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="post" tabindex="-1" aria-disabled="true">Post</a>
                         </li>
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="post">

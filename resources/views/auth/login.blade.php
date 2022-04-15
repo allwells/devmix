@@ -13,6 +13,7 @@
                     </div>
                 @endif
 
+                {{-- email input field --}}
                 <div class="d-flex flex-column mt-3">
                     <label for="email" style="font-size: 15px;" class="fw-bold mb-2 mx-1">Email</label>
                     <input style="font-size: 14px; padding-top: 13px; padding-bottom: 13px;"
@@ -27,6 +28,7 @@
                     @enderror
                 </div>
 
+                {{-- Password input field --}}
                 <div class="d-flex flex-column mt-3">
                     <label for="password" style="font-size: 15px;" class="fw-bold mb-2 mx-1">Password</label>
                     <input style="font-size: 14px; padding-top: 13px; padding-bottom: 13px;"
@@ -41,6 +43,13 @@
                     @enderror
                 </div>
 
+                {{-- Remember me check box --}}
+                <div class="form-check mt-2">
+                    <input class="form-check-input" name="remember" type="checkbox" id="remember" />
+                    <label class="form-check-label" for="remember">Remember me</label>
+                </div>
+
+                {{-- login button --}}
                 <div class="d-flex flex-column mt-3">
                     <input name="submit" id="submit" type="submit" value="Login" aria-label=".form-control-lg example"
                         style="font-size: 14px; padding-top: 13px; padding-bottom: 13px;"
