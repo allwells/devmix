@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth'])->only(['store', 'destroy']);
+    }
+
     public function index()
     {
 
@@ -17,7 +23,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('posts.show', [
+        return view('post.show', [
             'post' => $post
         ]);
     }

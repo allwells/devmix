@@ -26,6 +26,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])->name('users.posts');
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 Route::post('/posts', [PostController::class, 'store']);
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
