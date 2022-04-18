@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <a class="navbar-brand fw-bolder" href="@auth {{ route('dashboard') }} @endauth
                 @guest {{ route('home') }} @endguest">
-                allwell.o()
+                Posty
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -26,14 +26,22 @@
             </button>
             <div class="collapse navbar-collapse flex justify-content-end w-auto" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" aria-current="page" href="{{ route('home') }}">Home</a>
+                        </li>
+                    @endguest
+
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="{{ route('posts') }}" tabindex="-1"
                             aria-disabled="true">Post</a>
                     </li>
+
                     @auth
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
+
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
@@ -45,11 +53,9 @@
 
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link text-dark" aria-current="page" href="{{ route('home') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="{{ route('register') }}" tabindex="-1"
                                 aria-disabled="true">Register</a>
