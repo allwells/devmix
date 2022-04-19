@@ -10,9 +10,10 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<body class="bg-dark">
+<body style="background-color: #000000;">
 
-    <nav style="margin-bottom: 30px;" class="navbar navbar-expand-lg navbar-light bg-light px-5">
+    <nav style="margin-bottom: 30px; position: fixed; width: 100%; background-color: #171717;"
+        class="navbar navbar-expand-lg navbar-dark px-5">
         <div class="container-fluid">
             <a class="navbar-brand fw-bolder" href="@auth {{ route('dashboard') }} @endauth
                 @guest {{ route('home') }} @endguest">
@@ -28,24 +29,28 @@
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link text-dark" aria-current="page" href="{{ route('home') }}">Home</a>
+                            <a class="nav-link text-light" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
                     @endguest
 
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ route('posts') }}" tabindex="-1"
+                        <a class="nav-link text-light" href="{{ route('posts') }}" tabindex="-1"
                             aria-disabled="true">Post</a>
                     </li>
 
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="{{ route('dashboard') }}">Dashboard</a>
+                            <a class="nav-link text-light" href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{{ route('profile') }}">Profile</a>
                         </li>
 
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
-                                <button class="nav-link border-0 bg-transparent text-dark" tabindex="-1" type="submit"
+                                <button class="nav-link border-0 bg-transparent text-light" tabindex="-1" type="submit"
                                     aria-disabled="true">Logout</button>
                             </form>
                         </li>
@@ -53,11 +58,11 @@
 
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
+                            <a class="nav-link text-light" href="{{ route('login') }}">Login</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="{{ route('register') }}" tabindex="-1"
+                            <a class="nav-link text-light" href="{{ route('register') }}" tabindex="-1"
                                 aria-disabled="true">Register</a>
                         </li>
                     @endguest

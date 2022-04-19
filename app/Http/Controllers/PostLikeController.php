@@ -19,17 +19,17 @@ class PostLikeController extends Controller
 
         if($post->likedBy($request->user()))
         {
-            return response(null, 409); // Conflict
+            return response(null, 409); // Status Code: 409 => Conflict
         }
 
         $post->likes()->create([
             'user_id' => $request->user()->id
         ]);
 
-        if(!$post->likes()->onlyTrashed()->where('user_id', $request->user()->id)->count())
-        {
-        Mail::to($post->user)->send(new PostLiked(auth()->user(), $post));
-        }
+        // if(!$post->likes()->onlyTrashed()->where('user_id', $request->user()->id)->count())
+        // {
+        //     Mail::to($post->user)->send(new PostLiked(auth()->user(), $post));
+        // }
 
         return back();
     }
