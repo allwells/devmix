@@ -4,7 +4,7 @@
     <div class="d-flex vh-100 justify-content-center align-items-center">
         <div style="width: 35%; margin-top: 3rem; background-color: #171717; border: 1px solid #333;"
             class="rounded py-4 px-3">
-            <span class="fs-3 fw-bold text-light">Login</span>
+            <h2 class="fs-3 fw-bold text-light">Login</h2>
             <form class="mt-3" action="{{ route('login') }}" method="post">
                 @csrf
 
@@ -21,7 +21,7 @@
 
                     {{-- email input --}}
                     <input
-                        style="box-shadow: none; border: none; font-size: 14px; padding-top: 13px; padding-bottom: 13px; background-color: #222; border: 1px solid #333;"
+                        style="font-size: 14px; padding-top: 13px; padding-bottom: 13px; background-color: #222; border: 1px solid #333;"
                         class="text-light form-control form-control-md @error('email') border border-danger @enderror"
                         name="email" id="email" type="email" placeholder="Your email" aria-label=".form-control-lg example"
                         value="{{ old('email') }}" />
@@ -40,7 +40,7 @@
 
                     {{-- password input --}}
                     <input
-                        style="box-shadow: none; border: none; font-size: 14px; padding-top: 13px; padding-bottom: 13px; background-color: #222; border: 1px solid #333;"
+                        style="font-size: 14px; padding-top: 13px; padding-bottom: 13px; background-color: #222; border: 1px solid #333;"
                         class="text-light form-control form-control-md @error('password') border border-danger @enderror"
                         name="password" id="password" type="password" placeholder="Choose a password"
                         aria-label=".form-control-lg example" />
@@ -60,8 +60,9 @@
 
                 {{-- login button --}}
                 <div class="d-flex flex-column mt-3">
-                    <input name="submit" id="submit" type="submit" value="Login" aria-label=".form-control-lg example"
-                        style="font-size: 14px; padding-top: 13px; padding-bottom: 13px; background-color: #222; border: 1px solid #333; background-color: #000;"
+                    <input name="submit" id="submit login-button" type="submit" value="Login"
+                        aria-label=".form-control-lg example"
+                        style="font-size: 14px; padding-top: 13px; padding-bottom: 13px; border: 1px solid #333; background-color: #070707;"
                         class="form-control form-control-md text-light fw-bold" />
                 </div>
             </form>

@@ -6,7 +6,7 @@
             <span class="text-light fs-4">{{ $post->body }}</span>
             @auth
                 <form style="border-top: 1px solid #888; border-bottom: 1px solid #888; padding: 1rem 0;"
-                    class="my-3 d-flex justify-content-center w-100 border-secondary" action="{{ route('posts') }}"
+                    class="my-3 d-flex justify-content-center w-100 border-secondary" action="{{ route('explore') }}"
                     method="post">
                     @csrf
 

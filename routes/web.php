@@ -11,10 +11,6 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\Auth\RegisterController;
 
-Route::get('/', function () {
-    return view("home");
-})->name('home');
-
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -29,11 +25,12 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 Route::get('/profile/{user:username}', [UserPostController::class, 'index'])->name('user.profile');
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts');
-Route::post('/posts/{post}', [PostController::class, 'show'])->name('post.show');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
-Route::post('/posts', [PostController::class, 'store']);
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('/', [PostController::class, 'index']);
+Route::get('/explore', [PostController::class, 'index'])->name('explore');
+Route::post('/explore/{post}', [PostController::class, 'show'])->name('explore.show');
+Route::get('/explore/{post}', [PostController::class, 'show'])->name('explore.show');
+Route::post('/explore', [PostController::class, 'store']);
+Route::delete('/explore/{post}', [PostController::class, 'destroy'])->name('explore.destroy');
 
-Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
-Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('posts.likes');
+Route::post('/explore/{post}/likes', [PostLikeController::class, 'store'])->name('explore.likes');
+Route::delete('/explore/{post}/likes', [PostLikeController::class, 'destroy'])->name('explore.likes');

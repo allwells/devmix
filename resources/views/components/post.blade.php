@@ -28,7 +28,7 @@
         {{-- Show like or unlike icon if user is signed in --}}
         @auth
             @if (!$post->likedBy(auth()->user()))
-                <form class="mr-1 border-0 outline-0" action="{{ route('posts.likes', $post) }}" method="post">
+                <form class="mr-1 border-0 outline-0" action="{{ route('explore.likes', $post) }}" method="post">
                     @csrf
                     <button
                         style="border: none; box-shadow: none; background-color: transparent; font-size: 12px; margin-right: 0.3rem;"
@@ -36,7 +36,7 @@
                             width="16" height="16" alt="like" /></button>
                 </form>
             @else
-                <form class="ml-1" action="{{ route('posts.likes', $post) }}" method="post">
+                <form class="ml-1" action="{{ route('explore.likes', $post) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button
@@ -71,7 +71,7 @@
         {{-- Show delete icon if user is signed in --}}
         @auth
             @can('delete', $post)
-                <form style="margin-left: 0.2rem;" action="{{ route('posts.destroy', $post) }}" method="post">
+                <form style="margin-left: 0.2rem;" action="{{ route('explore.destroy', $post) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button style="border: none; box-shadow: none; margin-right: 0.5rem; font-size: 12px;"
