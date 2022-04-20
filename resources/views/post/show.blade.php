@@ -128,7 +128,8 @@
                 <span class="text-light fw-bold fs-4 my-3">Comments ({{ $post->comments->count() }})</span>
                 @if ($post->count())
                     @foreach ($post->comments as $reply)
-                        <div style="border: 1px solid #313131;" class="d-flex flex-column rounded my-2 py-2 px-3">
+                        <div style="background-color: #090909; border: 1px solid #222;"
+                            class="d-flex flex-column rounded my-2 py-2 px-3">
 
                             <div class="d-flex justify-content-start">
                                 {{-- name of user [ owner of comment ] --}}

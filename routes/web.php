@@ -17,7 +17,7 @@ Route::get('/', function() {
 });
 
 // LOGOUT ROUTE
-Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::post('/logout', [LogoutController::class, 'index'])->name('logout');
 
 // LOGIN ROUTE
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -31,7 +31,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // PROFILE ROUTE
-Route::get('/profile', [UserPostController::class, 'index'])->name('profile');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/profile/{user:username}', [UserPostController::class, 'index'])->name('user.profile');
 
 // SHOW ALL POSTS

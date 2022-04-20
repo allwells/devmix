@@ -1,6 +1,6 @@
 @props(['post' => $post])
 
-<div style="background-color: #171717; border: 1px solid #353535; padding: 1rem 1.5rem 0.5rem 1.5rem;"
+<div style="background-color: #090909; border: 1px solid #222; padding: 1rem 1.5rem 0.5rem 1.5rem;"
     class="d-flex flex-column rounded my-3">
     <div class="d-flex flex-column">
 
