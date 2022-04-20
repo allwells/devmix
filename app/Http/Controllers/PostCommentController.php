@@ -12,31 +12,21 @@ class PostCommentController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function index(User $user)
+    public function index(User $user, Post $post)
     {
         return view('post.show', [
-            'user' => $user,
+            'user' => auth()->user(),
             'post' => $post
         ]);
     }
 
     public function store(Post $post, Request $request)
     {
-
-        // if($post->commentedBy($request->user()))
-        // {
-        //     return response(null, 409); // Conflict
-        // }
-
         $post->comments()->create([
-            'user_id' => $request->user()->id,
+            'user_id' => auth()->user()->id,
+            'post_id' => $request->post->id,
             'comments' => $request->comments
         ]);
-
-        // if(!$post->comments()->onlyTrashed()->where('user_id', $request->user()->id)->count())
-        // {
-        //     Mail::to($post->user)->send(new PostLiked(auth()->user(), $post));
-        // }
 
         return back();
     }

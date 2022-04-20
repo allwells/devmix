@@ -11,26 +11,42 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\Auth\RegisterController;
 
+// HOME ROUTE (redirects to 'posts')
+Route::get('/', function() {
+    return redirect()->route('posts');
+});
+
+// LOGOUT ROUTE
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
+// LOGIN ROUTE
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
+// REGISTER USER ROUTE
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
+// DASHBOARD ROUTE
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-
+// PROFILE ROUTE
+Route::get('/profile', [UserPostController::class, 'index'])->name('profile');
 Route::get('/profile/{user:username}', [UserPostController::class, 'index'])->name('user.profile');
 
-Route::get('/', [PostController::class, 'index']);
-Route::get('/explore', [PostController::class, 'index'])->name('explore');
-Route::post('/explore/{post}', [PostController::class, 'show'])->name('explore.show');
-Route::get('/explore/{post}', [PostController::class, 'show'])->name('explore.show');
-Route::post('/explore', [PostController::class, 'store']);
-Route::delete('/explore/{post}', [PostController::class, 'destroy'])->name('explore.destroy');
+// SHOW ALL POSTS
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::post('/posts', [PostController::class, 'store']);
 
-Route::post('/explore/{post}/likes', [PostLikeController::class, 'store'])->name('explore.likes');
-Route::delete('/explore/{post}/likes', [PostLikeController::class, 'destroy'])->name('explore.likes');
+// SINGLE-POST ROUTE
+Route::get('/posts/{post}', [PostCommentController::class, 'index'])->name('posts.show');
+Route::post('/posts/{post}', [PostCommentController::class, 'index']);
+Route::delete('/posts/{post}', [PostCommentController::class, 'destroy'])->name('posts.destroy');
+
+// LIKE ROUTE
+Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
+Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('posts.likes');
+
+// COMMENT ROUTE
+Route::post('/posts/{post}/comment', [PostCommentController::class, 'store'])->name('posts.comment');
+Route::delete('/posts/{post}/comment', [PostCommentController::class, 'destroy'])->name('posts.comment');

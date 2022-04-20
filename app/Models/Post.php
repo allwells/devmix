@@ -23,7 +23,7 @@ class Post extends Model
 
     public function commentedBy(User $user)
     {
-        return $this->comment->contains('user_id', $user->id);
+        return $this->comments->contains('user_id', $user->id);
     }
 
     public function user()

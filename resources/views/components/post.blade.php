@@ -23,60 +23,80 @@
         </span>
 
     </div>
-    <div class="d-flex my-2">
 
+
+    <div class="d-flex my-2">
         {{-- Show like or unlike icon if user is signed in --}}
         @auth
             @if (!$post->likedBy(auth()->user()))
-                <form class="mr-1 border-0 outline-0" action="{{ route('explore.likes', $post) }}" method="post">
+                <form class="mr-1 border-0 outline-0" action="{{ route('posts.likes', $post) }}" method="post">
                     @csrf
                     <button
                         style="border: none; box-shadow: none; background-color: transparent; font-size: 12px; margin-right: 0.3rem;"
                         class="btn fw-bold p-0 text-secondary" type="submit"><img src="{{ asset('img/unlike.svg') }}"
-                            width="16" height="16" alt="like" /></button>
+                            width="16" height="16" alt="like" />
+
+                        <span style="font-size: 12px; padding-top: 0.35rem; margin-right: 0.5rem;"
+                            class="text-secondary fw-bold">
+                            {{ $post->likes->count() }} {{ Str::plural('Reaction', $post->likes->count()) }}
+                        </span>
+                    </button>
                 </form>
             @else
-                <form class="ml-1" action="{{ route('explore.likes', $post) }}" method="post">
+                <form class="ml-1" action="{{ route('posts.likes', $post) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button
                         style="border: none; box-shadow: none; background-color: transparent; font-size: 12px; margin-right: 0.3rem;"
                         class="btn fw-bold p-0 text-secondary" type="submit"><img src="{{ asset('img/like.svg') }}"
-                            width="16" height="16" alt="unlike" /></button>
+                            width="16" height="16" alt="unlike" />
+                        <span style="font-size: 12px; padding-top: 0.35rem; margin-right: 0.5rem;"
+                            class="text-secondary fw-bold">
+                            {{ $post->likes->count() }} {{ Str::plural('Reaction', $post->likes->count()) }}
+                        </span>
+                    </button>
                 </form>
             @endif
         @endauth
 
-        {{-- Display number of reactions --}}
-        <span style="cursor: default; font-size: 12px; padding-top: 0.35rem; margin-right: 0.5rem;"
-            class="text-secondary fw-bold">
-            {{ $post->likes->count() }} {{ Str::plural('Reaction', $post->likes->count()) }}
-        </span>
+        @guest
+            {{-- Display number of reactions --}}
+            <span style="cursor: default; font-size: 12px; padding-top: 0.35rem; margin-right: 0.5rem;"
+                class="text-secondary fw-bold">
+                {{ $post->likes->count() }} {{ Str::plural('Reaction', $post->likes->count()) }}
+            </span>
+        @endguest
 
         {{-- Show comment icon if user is signed in --}}
         @auth
-            <form class="ml-1" action="{{ route('post.show', $post) }}" method="post">
+            <form class="ml-1" action="{{ route('posts.show', $post) }}" method="post">
                 @csrf
                 <button style="border: none; box-shadow: none; margin:0 0.5rem; font-size: 12px;"
                     class="btn fw-bold p-0 text-secondary" type="submit"><img src="{{ asset('img/comment.svg') }}"
-                        width="16" height="16" alt="comment" /></button>
+                        width="16" height="16" alt="comment" />
+
+                    <span style="font-size: 12px; padding-top: 0.35rem;" class="text-secondary fw-bold">
+                        {{ $post->comments->count() }} {{ Str::plural('Comment', $post->comments->count()) }}
+                    </span></button>
             </form>
         @endauth
 
-        {{-- Display number of comments --}}
-        <span style="cursor: default; font-size: 12px; padding-top: 0.35rem;" class="text-secondary fw-bold">
-            {{ $post->comments->count() }} {{ Str::plural('Comment', $post->comments->count()) }}
-        </span>
+        @guest
+            {{-- Display number of comments --}}
+            <span style="cursor: default; font-size: 12px; padding-top: 0.35rem;" class="text-secondary fw-bold">
+                {{ $post->comments->count() }} {{ Str::plural('Comment', $post->comments->count()) }}
+            </span>
+        @endguest
 
         {{-- Show delete icon if user is signed in --}}
         @auth
             @can('delete', $post)
-                <form style="margin-left: 0.2rem;" action="{{ route('explore.destroy', $post) }}" method="post">
+                <form style="margin-left: 0.2rem;" action="{{ route('posts.destroy', $post) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button style="border: none; box-shadow: none; margin-right: 0.5rem; font-size: 12px;"
                         class="btn fw-bold p-0 text-secondary" type="submit"><img src="{{ asset('img/delete.svg') }}"
-                            width="16" height="16" alt="delete" /></button>
+                            width="16" height="16" alt="delete" /> Delete</button>
                 </form>
             @endcan
         @endauth

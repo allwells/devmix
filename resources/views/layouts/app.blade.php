@@ -18,7 +18,7 @@
         <div class="container-fluid">
             {{-- logo --}}
             <a class="navbar-brand fw-bolder" href="@auth {{ route('dashboard') }} @endauth
-                @guest {{ route('explore') }} @endguest">
+                @guest {{ route('posts') }} @endguest">
                 Posty
             </a>
 
@@ -32,14 +32,14 @@
                     @guest
                         {{-- Home route --}}
                         <li class="nav-item">
-                            <a class="nav-link text-light" aria-current="page" href="{{ route('explore') }}">Home</a>
+                            <a class="nav-link text-light" aria-current="page" href="{{ route('posts') }}">Home</a>
                         </li>
                     @endguest
 
                     @auth
                         {{-- Explore route --}}
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ route('explore') }}" tabindex="-1"
+                            <a class="nav-link text-light" href="{{ route('posts') }}" tabindex="-1"
                                 aria-disabled="true">Explore</a>
                         </li>
 
