@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Posty</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../css/app.css">
+    <link rel="stylesheet" href="{{ asset('ckeditor/contents.css') }}">
 </head>
 
-<body style="background-color: #000000; min-height: 100vh;">
+<body style="background-color: #010101; min-height: 100vh;">
 
     <nav style="margin-bottom: 30px; border-bottom: 1px solid #333; position: fixed; width: 100%; background-color: #171717;"
         class="navbar navbar-expand-lg navbar-dark px-5">
@@ -63,7 +63,8 @@
                     @guest
                         {{-- Login button --}}
                         <li class="nav-item d-flex flex-column justify-content-center">
-                            <a class="nav-link text-light" href="{{ route('login') }}" tabindex="-1" aria-disabled="true">
+                            <a class="nav-link text-light" href="{{ route('login') }}" tabindex="-1"
+                                aria-disabled="true">
                                 <img src="{{ asset('img/login.svg') }}" width="25" height="25" alt="login" />
                                 <span style="font-size: 14px; margin-left: 0.2rem;" class="text-light fw-bold">Login</span>
                             </a>
@@ -86,6 +87,7 @@
 
     @yield('content')
 
+    @yield('scripts')
     <footer
         style="background-color: #000; font-size: 13px; color: #888; position: fixed; bottom: 0; cursor: default; border-top: 1px solid #222;"
         class="d-flex justify-content-center w-100 align-items-center py-2">
@@ -95,9 +97,6 @@
             rel="noopener noreferrer">Allwell</a>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
 </body>
 
 </html>

@@ -7,6 +7,7 @@ use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CreatePostController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -36,7 +37,10 @@ Route::get('/profile/{user:username}', [UserPostController::class, 'index'])->na
 
 // SHOW ALL POSTS
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
-Route::post('/posts', [PostController::class, 'store']);
+
+// CREATE POST ROUTE
+Route::get('/create', [PostController::class, 'create_post'])->name('create');
+Route::post('/create', [PostController::class, 'store']);
 
 // SINGLE-POST ROUTE
 Route::get('/posts/{post}', [PostCommentController::class, 'index'])->name('posts.show');

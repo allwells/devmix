@@ -8,19 +8,22 @@
             </div>
             <div class="d-flex justify-content-between px-5 mt-3">
                 <div style="width: 24%;" class="d-flex flex-column">
-                    <a style="margin-bottom: 0.5rem; background-color: #090909;" class="nav-link rounded text-light"
-                        href="{{ route('profile') }}" tabindex="-1" aria-disabled="true">
+                    <a style="margin-bottom: 1.05rem; background-color: #090909; border: 1px solid #222;"
+                        class="nav-link rounded text-light" href="{{ route('profile') }}" tabindex="-1"
+                        aria-disabled="true">
                         <img src="{{ asset('img/profile.svg') }}" width="25" height="25" alt="profile" />
                         <span style="font-size: 14px; margin-left: 0.2rem;" class="text-light fw-bold">Profile</span>
                     </a>
 
-                    <a style="margin-bottom: 0.5rem; background-color: #090909;" class="nav-link rounded text-light"
-                        href="{{ route('profile') }}" tabindex="-1" aria-disabled="true">
+                    <a style="margin-bottom: 1.05rem; background-color: #090909; border: 1px solid #222"
+                        class="nav-link rounded text-light" href="{{ route('create') }}" tabindex="-1"
+                        aria-disabled="true">
                         <img src="{{ asset('img/create.png') }}" width="25" height="25" alt="profile" />
                         <span style="font-size: 14px; margin-left: 0.2rem;" class="text-light fw-bold">Create Post</span>
                     </a>
 
-                    <form class="rounded" style="margin-bottom: 0.4rem; background-color: #090909;"
+                    <form class="rounded"
+                        style="margin-bottom: 1.05rem; background-color: #090909; border: 1px solid #222"
                         action="{{ route('logout') }}" method="post">
                         @csrf
                         <button class="w-100 text-start border-0 nav-link bg-transparent text-light" tabindex="-1"
