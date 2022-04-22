@@ -1,17 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <div style="min-height: 100vh;" class="w-100 d-flex flex-column justify-content-start align-items-center py-5">
-        <div class="py-4 mt-5 w-75">
-            <span class="fw-bolder fs-2 text-light">Create Post</span>
+    <div class="w-100 d-flex flex-column justify-content-start align-items-center py-3">
+        <div class="px-5 py-3 mt-5 w-75">
+            <span class="fw-bolder fs-3 text-light">Create Post</span>
         </div>
-        <form class="w-75 px-5 d-flex flex-column justify-content-center align-items-center" action="{{ route('posts') }}"
+        <form class="w-75 px-5 d-flex flex-column justify-content-center align-items-center" action="{{ route('create') }}"
             method="post">
             @csrf
 
-            <div style="background-color: #111; border: 1px solid #222;" class="w-100 d-flex rounded-2 flex-column">
+            <div style="min-height: 26rem; background-color: #111; border: 1px solid #222;"
+                class="w-100 d-flex rounded-2 flex-column">
                 {{-- post title --}}
-                <div class="w-100 mb-2 px-4">
+                <div class="w-100 mb-2 px-5">
                     <input style="background-color: #111; border: none; box-shadow: none;" name="title"
                         class="form-control text-light py-4 fw-bolder fs-2 @error('title') border border-danger @enderror"
                         id="title" placeholder="Post title here..." />
@@ -24,9 +25,29 @@
                 </div>
 
                 {{-- post content --}}
-                <div class="w-100 pb-5">
-                    <div style="background-color: transparent;" name="body"
-                        class="cke_editable @error('body') border border-danger @enderror" id="body"></div>
+                <div class="w-100">
+                    <input type="hidden" name="body" class="@error('body') border border-danger @enderror" id="body"></input>
+                    <trix-editor x-data="{
+                        upload(event) {
+                            const data = new FormData();
+
+                            data.append('attachment', event.attachment.file);
+
+                            windows.axios.post('/attachments', data, {
+
+                                onUploadProgress(progressEvent) {
+                                    event.attachment.setUploadProgress(progressEvent.loaded / progressEvent.total * 100);
+                                },
+
+                            }).then(({ data }) => {
+                                event.attachment.setAttribute({ url: data.image_url, });
+                            });
+
+                        }
+                    }" x-on:trix-attachment-add="upload"
+                        placeholder="Write your post content here..." class="text-light" input="body">
+                    </trix-editor>
+
 
                     @error('body')
                         <div class="text-danger fs-6">
@@ -49,8 +70,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script>
-        CKEDITOR.replace('body');
-    </script>
+    <script src="{{ asset('js/trix.js') }}"></script>
+    <script src="{{ asset('js/trix-core.js') }}"></script>
 @endsection

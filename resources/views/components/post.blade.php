@@ -6,6 +6,7 @@
 
         <div class="d-flex justify-content-start">
             {{-- name of user [ owner of post ] --}}
+            <div class="d-flex"></div>
             <a href="{{ route('user.profile', $post->user) }}"
                 class="fw-bold text-decoration-underline rounded text-light">{{ $post->user->name }}</a>
 
@@ -16,16 +17,19 @@
             <span style="cursor: default; font-size: 12px; padding-top: 0.3rem;"
                 class="fw-bold text-secondary">{{ $post->created_at->diffForHumans() }}</span>
         </div>
+        <div style="height: 1px; background-color: #333;" class="w-100 mt-3 mb-4"></div>
+
+        {{-- Post title --}}
+        <h2 class="cursor: default; fw-bold text-light">{{ $post->title }}</h2>
 
         {{-- Post content --}}
-        <span class="cursor: default; fs-6 text-light">
-            {{ $post->body }}
-        </span>
+        <div class="cursor: default; fs-6 text-light">{!! clean($post->body) !!}</div>
 
     </div>
 
 
-    <div class="d-flex my-2">
+    <div class=" d-flex
+            my-2">
         {{-- Show like or unlike icon if user is signed in --}}
         @auth
             @if (!$post->likedBy(auth()->user()))

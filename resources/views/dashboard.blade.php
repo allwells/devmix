@@ -74,7 +74,8 @@
                                     haven't
                                     written anything yet.</p>
                                 <a style="background-color: #162C52; border: 1px solid #384e74; font-size: 14px; width: fit-content;"
-                                    class="fw-bold py-2 px-4 rounded text-decoration-none text-light" href="#">Write
+                                    class="fw-bold py-2 px-4 rounded text-decoration-none text-light"
+                                    href="{{ route('create') }}">Write
                                     your first
                                     post</a>
                             </div>

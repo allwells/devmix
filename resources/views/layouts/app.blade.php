@@ -8,11 +8,12 @@
     <title>Posty</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('ckeditor/contents.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/trix.css') }}">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
 <body style="background-color: #010101; min-height: 100vh;">
-
     <nav style="margin-bottom: 30px; border-bottom: 1px solid #333; position: fixed; width: 100%; background-color: #171717;"
         class="navbar navbar-expand-lg navbar-dark px-5">
         <div class="container-fluid">

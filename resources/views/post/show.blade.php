@@ -13,7 +13,7 @@
 
             <br>
             {{-- Post content --}}
-            <span class="text-light fs-5">{{ $post->body }}</span>
+            <span class="text-light fs-5">{!! clean($post->body) !!}</span>
 
 
             <div class="d-flex my-2">
