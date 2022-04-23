@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="d-flex flex-column justify-content-start align-items-center pb-3">
-        <div style="width: 60%; background-color: #000;" class="rounded  border-secondary py-3 pt-5 mt-5 px-3 mb-4">
-            <span class="text-light fs-5 fw-bold text-capitalize">Lastest post</span>
+        <div style="width: 50%;"
+            class="d-flex flex-column justify-content-start align-items-center border-secondary py-3 pt-5 mt-5 px-3 mb-4">
 
+            <span class="w-100 text-light fs-5 fw-bold text-capitalize">Lastest post</span>
 
             @if ($posts->count())
                 @foreach ($posts as $post)

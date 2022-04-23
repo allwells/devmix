@@ -37,6 +37,7 @@ Route::get('/profile/{user:username}', [UserPostController::class, 'index'])->na
 
 // SHOW ALL POSTS
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::delete('/posts', [PostController::class, 'destroy'])->name('posts.destroy');
 
 // CREATE POST ROUTE
 Route::get('/create', [PostController::class, 'create_post'])->name('create');

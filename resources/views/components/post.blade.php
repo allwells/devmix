@@ -1,7 +1,7 @@
 @props(['post' => $post])
 
 <div style="background-color: #090909; border: 1px solid #222; padding: 1rem 1.5rem 0.5rem 1.5rem;"
-    class="d-flex flex-column rounded my-3">
+    class="d-flex w-100 flex-column rounded my-3">
     <div class="d-flex flex-column">
 
         <div class="d-flex justify-content-start">
@@ -17,13 +17,17 @@
             <span style="cursor: default; font-size: 12px; padding-top: 0.3rem;"
                 class="fw-bold text-secondary">{{ $post->created_at->diffForHumans() }}</span>
         </div>
+
+        {{-- divider - divides the user's name and the post title --}}
         <div style="height: 1px; background-color: #333;" class="w-100 mt-3 mb-4"></div>
 
         {{-- Post title --}}
-        <h2 class="cursor: default; fw-bold text-light">{{ $post->title }}</h2>
+        <h2 style="cursor: pointer;" class="fw-bold mb-3">
+            <a class="text-light" href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
+        </h2>
 
         {{-- Post content --}}
-        <div class="cursor: default; fs-6 text-light">{!! clean($post->body) !!}</div>
+        <div style="cursor: default;" class="fs-6 text-light">{!! clean(Str::limit($post->body, 120)) !!}</div>
 
     </div>
 
@@ -73,16 +77,15 @@
 
         {{-- Show comment icon if user is signed in --}}
         @auth
-            <form class="ml-1" action="{{ route('posts.show', $post) }}" method="post">
-                @csrf
-                <button style="border: none; box-shadow: none; margin:0 0.5rem; font-size: 12px;"
-                    class="btn fw-bold p-0 text-secondary" type="submit"><img src="{{ asset('img/comment.svg') }}"
-                        width="16" height="16" alt="comment" />
+            <a href="{{ route('posts.show', $post) }}"
+                style="border: none; box-shadow: none; margin:0 0.5rem; font-size: 12px;"
+                class="ml-1 mt-1 btn fw-bold p-0 text-secondary" type="submit">
+                <img src="{{ asset('img/comment.svg') }}" width="16" height="16" alt="comment" />
 
-                    <span style="font-size: 12px; padding-top: 0.35rem;" class="text-secondary fw-bold">
-                        {{ $post->comments->count() }} {{ Str::plural('Comment', $post->comments->count()) }}
-                    </span></button>
-            </form>
+                <span style="font-size: 12px; padding-top: 0.35rem;" class="text-secondary fw-bold">
+                    {{ $post->comments->count() }} {{ Str::plural('Comment', $post->comments->count()) }}
+                </span>
+            </a>
         @endauth
 
         @guest
