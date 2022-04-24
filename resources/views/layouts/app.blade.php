@@ -92,7 +92,7 @@
     <footer
         style="background-color: #000; font-size: 13px; color: #888; position: fixed; bottom: 0; cursor: default; border-top: 1px solid #222;"
         class="d-flex justify-content-center w-100 align-items-center py-2">
-        Posty © 2022. Made with
+        DevMix © {{ now()->year }}. Made with
         <img class="mx-1" src="{{ asset('img/like.svg') }}" width="20" height="20" alt="love" />
         by <a class="mx-1 fw-bold" href="http://github.com/allwells" target="_blank"
             rel="noopener noreferrer">Allwell</a>

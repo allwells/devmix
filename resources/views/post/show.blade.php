@@ -5,7 +5,8 @@
         <div class="rounded py-3 mt-5 w-50 px-3">
             <div style="background-color: #333; height: 1px;" class="my-3 w-100"></div>
 
-            <span class="text-light fs-4 fw-bold">{{ $post->user->name }}</span>
+            <a href="{{ route('user.profile', $post->user) }}"
+                class="text-light p-2 rounded fs-4 fw-bold">{{ $post->user->name }}</a>
             {{-- divides the user's name and the time posted --}}
             <span class="mx-1 text-secondary">-</span>
 
