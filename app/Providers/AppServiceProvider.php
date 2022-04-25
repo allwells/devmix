@@ -28,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
 
         if (config('app.env') === 'production') {
             \URL::forceScheme('https');
+            env('DB_DATABASE', \database_path('devmix.sqlite3'));
         }
+
+        \URL::forceRootUrl(\Config::get('app.url'));
     }
 }

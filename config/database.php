@@ -38,7 +38,7 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
-            'database' => env('DB_DATABASE', database_path('devmix.sqlite3')),
+            'database' => config('app.env') === "production" ? env('DB_DATABASE', database_path('devmix.sqlite3')) : env('DB_DATABASE', database_path('devmix_dev.sqlite3')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
