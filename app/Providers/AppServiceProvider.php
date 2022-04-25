@@ -31,6 +31,6 @@ class AppServiceProvider extends ServiceProvider
             env('DB_DATABASE', \database_path('devmix.sqlite3'));
         }
 
-        \URL::forceRootUrl(\Config::get('app.url'));
+        // \URL::forceRootUrl(\Config::get('app.url'));
     }
 }
