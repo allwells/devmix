@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="w-100 d-flex flex-column justify-content-start align-items-center py-3">
+    <div class="w-100 d-flex flex-column justify-content-start align-items-center py-3 mb-5">
         <div class="px-5 py-3 mt-5 w-75">
             <span class="fw-bolder fs-3 text-light">Create Post</span>
         </div>

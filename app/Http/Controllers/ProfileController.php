@@ -11,12 +11,12 @@ class ProfileController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function index()
+    public function index(User $user)
     {
         $posts = auth()->user()->posts()->with(['user', 'likes'])->paginate(20);
 
         return view('user.post.index', [
-            'user' => auth()->user(),
+            'user' => $user,
             'posts' => $posts
         ]);
     }

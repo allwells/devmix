@@ -7,6 +7,7 @@
 
             <a href="{{ route('user.profile', $post->user) }}"
                 class="text-light p-2 rounded fs-4 fw-bold">{{ $post->user->name }}</a>
+
             {{-- divides the user's name and the time posted --}}
             <span class="mx-1 text-secondary">-</span>
 
@@ -24,12 +25,15 @@
             <span class="text-light fs-5">{!! clean($post->body) !!}</span>
 
 
+            <div style="background-color: #333; height: 1px;" class="mt-3 w-100"></div>
+
+
             <div class="d-flex my-2">
 
                 {{-- Show like or unlike icon if user is signed in --}}
                 @auth
                     @if (!$post->likedBy(auth()->user()))
-                        <form class="mr-1 border-0 outline-0" action="{{ route('posts.likes', $post) }}" method="post">
+                        <form class="mr-1 border-0 outline-0" action="{{ route('posts.like', $post) }}" method="post">
                             @csrf
                             <button
                                 style="border: none; box-shadow: none; background-color: transparent; font-size: 12px; margin-right: 0.3rem;"
@@ -43,7 +47,7 @@
                             </button>
                         </form>
                     @else
-                        <form class="ml-1" action="{{ route('posts.likes', $post) }}" method="post">
+                        <form class="ml-1" action="{{ route('posts.unlike', $post) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button
@@ -102,23 +106,30 @@
             </div>
 
 
+            <div style="background-color: #333; height: 1px;" class="mt-3 w-100"></div>
+
+
+            <div style="" class="d-flex flex-column justify-content-center w-100 rounded">
+                <span class="text-light fw-bold fs-4 my-3">Comments ({{ $post->comments->count() }})</span>
+                @if ($post->count())
+                    @foreach ($post->comments as $reply)
+                        <x-comment :post="$post" :comments="$comments" :reply="$reply" />
+                    @endforeach
+                @endif
+            </div>
+
+            {{-- COMMENT FORM --}}
             @auth
-                <form style="border-top: 1px solid #888; border-bottom: 1px solid #888; padding: 1rem 0;"
-                    class="my-3 d-flex justify-content-center w-100 border-secondary"
+                <form style="border-top: 1px solid #222; border-bottom: 1px solid #222; padding: 1rem 0;"
+                    class="my-3 d-flex justify-content-center w-100 border-secondary @error('comments') border border-danger @enderror"
                     action="{{ route('posts.comment', $post) }}" method="post" id="comments">
                     @csrf
 
                     {{-- post text area --}}
                     <div style="width: 85%;" class="d-flex flex-column">
                         <input style="background-color: transparent; border: none; box-shadow: none;" name="comments"
-                            class="form-control text-light @error('comments') border border-danger @enderror" id="comments"
-                            placeholder="Add a comment..." />
+                            class="form-control text-light" id="comments" placeholder="Add a comment..." />
 
-                        @error('comments')
-                            <div class="text-danger fs-6">
-                                {{ $message }}
-                            </div>
-                        @enderror
                     </div>
 
                     {{-- Post button --}}
@@ -128,37 +139,13 @@
                             class="form-control box-shadow: none; form-control-md text-light fw-bold" />
                     </div>
                 </form>
+                @error('comments')
+                    <div class="text-danger fs-6">
+                        {{ $message }}
+                    </div>
+                @enderror
             @endauth
 
-            <div style="" class="d-flex flex-column justify-content-center w-100 rounded">
-                <span class="text-light fw-bold fs-4 my-3">Comments ({{ $post->comments->count() }})</span>
-                @if ($post->count())
-                    @foreach ($post->comments as $reply)
-                        <div style="background-color: #090909; border: 1px solid #222;"
-                            class="d-flex flex-column rounded my-2 py-2 px-3">
-
-                            <div class="d-flex justify-content-start">
-                                {{-- name of user [ owner of comment ] --}}
-                                <a href="{{ route('user.profile', $reply->user) }}"
-                                    class="fw-bold text-decoration-underline rounded text-light">{{ $reply->user->name }}</a>
-
-                                {{-- divides the user's name and the time posted --}}
-                                <span class="mx-1 text-secondary">-</span>
-
-                                {{-- time post was made by user --}}
-                                <span style="cursor: default; font-size: 12px; padding-top: 0.3rem;"
-                                    class="fw-bold text-secondary">{{ $reply->created_at->diffForHumans() }}</span>
-                            </div>
-
-                            {{-- Post content --}}
-                            <span class="cursor: default; fs-6 text-light mt-2">
-                                {{ $reply->comments }}
-                            </span>
-
-                        </div>
-                    @endforeach
-                @endif
-            </div>
         </div>
     </div>
 @endsection

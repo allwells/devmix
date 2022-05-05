@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware(['auth'])->only(['store', 'destroy', 'create_post']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(['auth'])->only(['store', 'destroy', 'create_post']);
+    // }
 
     public function index()
     {
@@ -19,13 +20,6 @@ class PostController extends Controller
         $posts = Post::latest()->with(['user', 'likes'])->paginate(20);
 
         return view('post.index', ['posts' => $posts]);
-    }
-
-    public function show(Post $post)
-    {
-        return view('post.show', [
-            'post' => $post
-        ]);
     }
 
     public function create_post()
@@ -43,10 +37,11 @@ class PostController extends Controller
 
         $request->user()->posts()->create([
             'title' => $request->title,
-            'body' => $request->body
+            'body' => $request->body,
+            'user_id' => auth()->user()->id
         ]);
 
-        return back();
+        return \redirect('/posts');
     }
 
     public function destroy(Post $post)

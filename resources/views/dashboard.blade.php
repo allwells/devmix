@@ -9,7 +9,7 @@
             <div class="d-flex justify-content-between px-5 mt-3">
                 <div style="width: 24%;" class="d-flex flex-column">
                     <a style="margin-bottom: 1.05rem; background-color: #090909; border: 1px solid #222;"
-                        class="nav-link rounded text-light" href="{{ route('profile') }}" tabindex="-1"
+                        class="nav-link rounded text-light" href="{{ route('profile', $user) }}" tabindex="-1"
                         aria-disabled="true">
                         <img src="{{ asset('img/profile.svg') }}" width="25" height="25" alt="profile" />
                         <span style="font-size: 14px; margin-left: 0.2rem;" class="text-light fw-bold">Profile</span>

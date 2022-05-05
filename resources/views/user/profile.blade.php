@@ -6,7 +6,7 @@
         <div style="width: 60%;" class="my-5">
 
             <div class="d-flex flex-column">
-                <h1 class="text-light">{{ $user->name }}</h1>
+                {{-- <h1 class="text-light">{{ $user->username }}</h1> --}}
                 <span style="font-size: 13px;" class="text-secondary">
                     Posts Published: {{ $posts->count() }}
                 </span>

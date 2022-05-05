@@ -3,37 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class PostCommentController extends Controller
 {
-    public function __construct() {
-        $this->middleware(['auth']);
-    }
-
-    public function index(User $user, Post $post)
+    public function index(Post $posts)
     {
         return view('post.show', [
             'user' => auth()->user(),
-            'post' => $post
+            'post' => $posts,
+            'comments' => $posts->comments
         ]);
     }
 
-    public function store(Post $post, Request $request)
+    public function store(Post $posts, Request $request)
     {
-        $post->comments()->create([
-            'user_id' => auth()->user()->id,
-            'post_id' => $request->post->id,
+        $this->validate($request, [
+            'comments' => 'required'
+        ]);
+
+        $posts->comments()->create([
+            'user_id' => $request->user()->id,
+            'post_id' => $request->posts->id,
             'comments' => $request->comments
         ]);
 
         return back();
     }
 
-    public function destroy(Post $post, Request $request)
+    public function destroy(Post $posts, Request $request)
     {
-        $request->user()->comments()->where('post_id', $post->id)->delete();
+        $request->user()->comments()->where('post_id', $posts->id)->delete();
 
         return back();
     }

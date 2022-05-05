@@ -27,7 +27,7 @@
         </h2>
 
         {{-- Post content --}}
-        <div style="cursor: default;" class="fs-6 text-light">{!! clean(Str::limit($post->body, 120)) !!}</div>
+        <div style="cursor: default;" class="fs-6 text-light">{!! clean(Str::limit($post->body, 150)) !!}</div>
 
     </div>
 
@@ -37,7 +37,7 @@
         {{-- Show like or unlike icon if user is signed in --}}
         @auth
             @if (!$post->likedBy(auth()->user()))
-                <form class="mr-1 border-0 outline-0" action="{{ route('posts.likes', $post) }}" method="post">
+                <form class="mr-1 border-0 outline-0" action="{{ route('posts.like', $post) }}" method="post">
                     @csrf
                     <button
                         style="border: none; box-shadow: none; background-color: transparent; font-size: 12px; margin-right: 0.3rem;"
@@ -51,7 +51,7 @@
                     </button>
                 </form>
             @else
-                <form class="ml-1" action="{{ route('posts.likes', $post) }}" method="post">
+                <form class="ml-1" action="{{ route('posts.unlike', $post) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\CommentLikes;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -65,5 +66,10 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function commentLikes()
+    {
+        return $this->hasMany(CommentLikes::class);
     }
 }
