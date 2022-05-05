@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     // COMMENT-LIKES ROUTE
     Route::post('/posts/{posts:id}/like', 'CommentLikesController@store')->name('posts.like.comment');
-    Route::delete('/posts/{posts:id}/unlike', 'CommentLikesController@store')->name('posts.unlike.comment');
+    Route::delete('/posts/{posts:id}/unlike', 'CommentLikesController@destroy')->name('posts.unlike.comment');
 });
 
 Route::group(['middleware' => 'guest'], function() {

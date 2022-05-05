@@ -11,14 +11,14 @@ class CommentLikesController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function store(Comment $comments, Request $request)
+    public function store(Comment $comment, Request $request)
     {
-        if($comments->likedBy($request->user()))
+        if($comment->likedBy($request->user()))
         {
             return response(null, 409); // Status Code: 409 => Conflict
         }
 
-        dd($request->comment);
+        dd($comment);
 
         // $comment->likes()->create([
         //     'user_id' => auth()->user()->id,
